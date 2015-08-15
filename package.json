@@ -13,7 +13,7 @@
     "keywords": [
         "HATEOAS",
         "REST webservice",
-        "pagination",
+        "pagination"
     ],
     "author": "Nicolas Traeder <traeder@codebility.com>",
     "license": "MIT",
