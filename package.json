@@ -1,0 +1,29 @@
+{
+    "name": "hateoas-link-helper",
+    "version": "0.0.1",
+    "description": "A little helper to creat HATEOAS links for any REST webservice",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:traedamatic/hateoas-link-helper.git"
+    },
+    "keywords": [
+        "HATEOAS",
+        "REST webservice",
+        "pagination",
+    ],
+    "author": "Nicolas Traeder <traeder@codebility.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/traedamatic/bunyan-mongodb-stream/issues"
+    },
+    "homepage": "https://github.com/traedamatic/bunyan-mongodb-stream",
+    "devDependencies": {
+        "chai": "^1.9.2",
+        "mocha": "^2.1.0",
+        "sinon": "^1.12.2"
+    }
+}
