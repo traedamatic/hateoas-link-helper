@@ -30,14 +30,15 @@ module.exports = {
             inputParameters[index] = originalParameters[index];
         }
 
-        var pathname = req.baseUrl + req.route.path;
+        var pathname = req.route.path,
+            hostname = req.header('host');
 
         //trim last slash
         pathname = pathname.replace(/\/$/, '');
 
         var urlObject = {
-            protocol: 'https',
-            hostname: req.hostname,
+            protocol: req.isSecure() ? 'https' : 'http',
+            host: hostname,
             pathname: pathname
         };
 
@@ -98,18 +99,27 @@ module.exports = {
     },
     /**
      * parse the parameter from the incoming request
+     *
+     * Following parameter will be parsed:
+     *
+     * order
+     * sorting
+     * limit
+     * page
+     * last - last if important for the bette mongodb pagination (optional)
+     *
      * @param req
      * @returns {{}}
      */
     parseParameters: function (req) {
 
         var parameters = {};
-        if (req.query.order != undefined && req.query.sorting != undefined) {
+        if (Object(req.query).hasOwnProperty('order') && Object(req.query).hasOwnProperty('sorting')) {
             parameters.sorting = req.query.sorting;
             parameters.order = req.query.order;
         }
 
-        if (req.query.limit != undefined) {
+        if (Object(req.query).hasOwnProperty('limit')) {
             parameters.limit = Number(req.query.limit);
 
             if (isNaN(parameters.limit)) {
@@ -117,12 +127,18 @@ module.exports = {
             }
         }
 
-        if (req.query.page != undefined) {
+        if (Object(req.query).hasOwnProperty('page')) {
+
             parameters.page = Number(req.query.page);
 
             if (isNaN(parameters.page)) {
                 parameters.page = 1;
             }
+
+        }
+
+        if (Object(req.query).hasOwnProperty('last')) {
+            parameters.last = req.query.last;
         }
 
         return parameters;

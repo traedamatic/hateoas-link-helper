@@ -1,6 +1,6 @@
 {
     "name": "hateoas-link-helper",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "description": "A little helper to creat HATEOAS links for any REST webservice",
     "main": "index.js",
     "scripts": {
@@ -18,9 +18,9 @@
     "author": "Nicolas Traeder <traeder@codebility.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/traedamatic/bunyan-mongodb-stream/issues"
+        "url": "https://github.com/traedamatic/hateoas-link-helper/issues"
     },
-    "homepage": "https://github.com/traedamatic/bunyan-mongodb-stream",
+    "homepage": "https://github.com/traedamatichateoas-link-helper",
     "devDependencies": {
         "chai": "^1.9.2",
         "mocha": "^2.1.0",
