@@ -249,6 +249,8 @@ describe('HATEOAS Link Helper Tests', function () {
             expect(home.rel).to.equal('home');
             expect(home.href).to.match(/^http:/);
             expect(home.href).to.match(/localhost:5555/);
+            expect(home.href).to.not.match(/nextLast/);
+
 
             var next = links.filter(function (link) {
                 if (link.rel === 'next') {
@@ -281,6 +283,20 @@ describe('HATEOAS Link Helper Tests', function () {
             expect(prev.href).to.match(/sorting=_id/);
             expect(prev.href).to.not.match(/prevLast/);
             expect(prev.href).to.match(/order=DESC/);
+
+
+            var self = links.filter(function (link) {
+                if (link.rel === 'self') {
+                    return true;
+                }
+            }).pop();
+
+
+            expect(self.rel).to.equal('self');
+            expect(self.href).to.match(/^http:/);
+            expect(self.href).to.match(/localhost:5555/);
+            expect(self.href).to.not.match(/nextLast/);
+            expect(self.href).to.not.match(/prevLast/);
 
         });
     })

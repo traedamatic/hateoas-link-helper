@@ -30,6 +30,19 @@ module.exports = {
             inputParameters[index] = originalParameters[index];
         }
 
+        //only for last identifier
+        if (inputParameters.nextLast) {
+            var nextLast = inputParameters.nextLast;
+            delete (inputParameters.nextLast);
+        }
+
+        //only for last identifier
+        if (inputParameters.prevLast) {
+            var prevLast = inputParameters.prevLast;
+            delete (inputParameters.prevLast);
+        }
+
+
         var pathname = req.route.path,
             hostname = req.header('host');
 
@@ -66,10 +79,8 @@ module.exports = {
                 inputParameters.page = 2;
             }
 
-            //only for last identifier
-            if (inputParameters.nextLast) {
-                inputParameters.last = inputParameters.nextLast;
-                delete (inputParameters.nextLast);
+            if (nextLast) {
+                inputParameters.last = nextLast;
             }
 
             urlObject.query = inputParameters;
@@ -92,10 +103,8 @@ module.exports = {
                 urlObject.query = inputParameters;
             }
 
-            //only for last identifier
-            if (inputParameters.prevLast) {
-                inputParameters.last = inputParameters.prevLast;
-                delete (inputParameters.prevLast);
+            if (prevLast) {
+                inputParameters.last = prevLast;
             }
 
             links.push(
