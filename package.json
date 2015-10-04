@@ -1,6 +1,6 @@
 {
     "name": "hateoas-link-helper",
-    "version": "0.0.5",
+    "version": "0.1.1",
     "description": "A little helper to creat HATEOAS links for any REST webservice",
     "main": "index.js",
     "scripts": {

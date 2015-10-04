@@ -66,6 +66,12 @@ module.exports = {
                 inputParameters.page = 2;
             }
 
+            //only for last identifier
+            if (inputParameters.nextLast) {
+                inputParameters.last = inputParameters.nextLast;
+                delete (inputParameters.nextLast);
+            }
+
             urlObject.query = inputParameters;
 
             links.push(
@@ -84,6 +90,12 @@ module.exports = {
 
             if (inputParameters.page > 1) {
                 urlObject.query = inputParameters;
+            }
+
+            //only for last identifier
+            if (inputParameters.prevLast) {
+                inputParameters.last = inputParameters.prevLast;
+                delete (inputParameters.prevLast);
             }
 
             links.push(
