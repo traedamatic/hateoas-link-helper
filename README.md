@@ -4,7 +4,7 @@ A little package for automatically creating HATEOAS (https://en.wikipedia.org/wi
 generated from the request and the url queries. **At the moment only the restify request is supported.**
 
 New change: The helper now supports all custom query parameter you provide. The parse function automatically iterates
-over the query object and extracts all parameter. All strings that are "number" will be casted to type Number. 
+over the query object and extracts all parameter. All parameter that are a "number" will be casted to type Number. 
 
 # Install
 
