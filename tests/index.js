@@ -112,6 +112,32 @@ describe('HATEOAS Link Helper Tests', function () {
 
         });
 
+        it('parse options from incoming request - random query parameter support ', function () {
+
+
+            var incomingRequest = {
+                query: {
+                    sorting: '_id',
+                    order: 'DESC',
+                    limit: '100',
+                    page: '10',
+                    last: '123234dwfsdf23',
+                    search: 'hugo',
+                    weight: '5'
+                }
+            };
+
+            var parameters = HATEOASLinkHelper.parseParameters(incomingRequest);
+
+            expect(parameters.sorting).to.equal(incomingRequest.query.sorting);
+            expect(parameters.order).to.equal(incomingRequest.query.order);
+            expect(parameters.limit).to.equal(parseInt(incomingRequest.query.limit));
+            expect(parameters.page).to.equal(10);
+            expect(parameters.search).to.equal('hugo');
+            expect(parameters.weight).to.equal(5);
+
+        });
+
     });
 
     describe('method - generateLinks', function () {

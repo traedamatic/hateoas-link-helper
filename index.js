@@ -120,46 +120,36 @@ module.exports = {
     },
     /**
      * parse the parameter from the incoming request
+     * All parameter in the req.query object will parsed
      *
-     * Following parameter will be parsed:
-     *
-     * order
-     * sorting
-     * limit
-     * page
-     * last - last if important for the bette mongodb pagination (optional)
-     *
-     * @param req
+     * @param req the request with query object
      * @returns {{}}
      */
     parseParameters: function (req) {
-
         var parameters = {};
-        if (Object(req.query).hasOwnProperty('order') && Object(req.query).hasOwnProperty('sorting')) {
-            parameters.sorting = req.query.sorting;
-            parameters.order = req.query.order;
+
+        if (!req.query) {
+            return parameters;
         }
 
-        if (Object(req.query).hasOwnProperty('limit')) {
-            parameters.limit = Number(req.query.limit);
-
-            if (isNaN(parameters.limit)) {
-                parameters.limit = 5;
+        for (var key in req.query) {
+            if( req.query.hasOwnProperty( key ) ) {
+                if (!isNaN(req.query[key])) {
+                    parameters[key] = Number(req.query[key]);
+                } else {
+                    parameters[key] = req.query[key];
+                }
             }
         }
 
-        if (Object(req.query).hasOwnProperty('page')) {
-
-            parameters.page = Number(req.query.page);
-
-            if (isNaN(parameters.page)) {
-                parameters.page = 1;
-            }
-
+        // fix NaN values for pagination
+        //TODO: put in config
+        if (parameters.limit && isNaN(parameters.limit)) {
+            parameters.limit = 5;
         }
 
-        if (Object(req.query).hasOwnProperty('last')) {
-            parameters.last = req.query.last;
+        if (parameters.limit && isNaN(parameters.page)) {
+            parameters.page = 1;
         }
 
         return parameters;
