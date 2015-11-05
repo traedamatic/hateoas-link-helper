@@ -1,5 +1,7 @@
 # HATEOAS link helper
 
+[![Build Status](https://travis-ci.org/traedamatic/hateoas-link-helper.svg?branch=master)](https://travis-ci.org/traedamatic/hateoas-link-helper)
+
 A little package for automatically creating HATEOAS (https://en.wikipedia.org/wiki/HATEOAS) links for pagination. The links will be
 generated from the request and the url queries. **At the moment only the restify request is supported.**
 
